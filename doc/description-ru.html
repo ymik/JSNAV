@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JSNAV</title>
+    <link rel="stylesheet" href="static/wiki.css" type="text/css"/>
+    <link rel="stylesheet" href="static/code.css" type="text/css"/>
+</head>
+<body>
+
+<div class="wikipage searchable">
+    <h1 id="JSNAV:помощникнавигации">JSNAV: помощник навигации<a title="Link to this section"
+                                                                 href="#JSNAV:%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%BD%D0%B8%D0%BA%D0%BD%D0%B0%D0%B2%D0%B8%D0%B3%D0%B0%D1%86%D0%B8%D0%B8"
+                                                                 class="anchor"> ¶</a></h1>
+
+    <p>
+        JSNAV - это библиотека, позволяющая указывать и сохранять вызовы javascript в URI страницы.
+    </p>
+
+    <p>
+        <br>
+    </p>
+
+    <h2 id="Какиеслучаипомогаетрешитьиспользованиеэтойбиблиотеки">Какие случаи помогает решить использование этой
+        библиотеки?<a title="Link to this section"
+                      href="#%D0%9A%D0%B0%D0%BA%D0%B8%D0%B5%D1%81%D0%BB%D1%83%D1%87%D0%B0%D0%B8%D0%BF%D0%BE%D0%BC%D0%BE%D0%B3%D0%B0%D0%B5%D1%82%D1%80%D0%B5%D1%88%D0%B8%D1%82%D1%8C%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D1%8D%D1%82%D0%BE%D0%B9%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B8"
+                      class="anchor"> ¶</a></h2>
+
+    <p>
+        Пример типичного случая использования javascript для навигации:
+        Представим себе страницу с подгружаемым по клику на меню содержимом:
+    </p>
+
+    <p>
+        <a style="padding: 0pt; border: none;" href="http://jqapi.com/" target="_blank"><img src="static/sample.png"
+                                                                                             alt="пример AJAX сайта"
+                                                                                             title="пример AJAX сайта"
+                                                                                             style="padding: 0pt; border: none;"></a>
+
+    </p>
+
+    <p>
+        Когда пользователь кликает по пунктам меню документа URL страницы не меняется. И, если пользователь просто
+        скопирует ссылку из адресной строки браузера, то по этой ссылке откроется документ с содержимым по умолчанию.
+        Чтобы решить эту проблему многие применяют кодирование текущего отображаемого содержимого в якоре URI страницы.
+        К примеру, пишут в якорь ID загруженного контента, чтобы восстановить его в случае открытия ссылки другим
+        пользователем.
+        К сожалению, этот способ лишает возможности использования стандартных якорей для навигации по странице.
+    </p>
+
+    <p>
+        Данная библиотека помогает стандартизировать кодирование javascript обработчиков в якоре URI страницы, а так же
+        помогает сохранить классическую навигацию по якорям.
+    </p>
+
+    <p>
+        <br>
+    </p>
+
+    <h2 id="Какэтоработает">Как это работает?<a title="Link to this section"
+                                                href="#%D0%9A%D0%B0%D0%BA%D1%8D%D1%82%D0%BE%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82"
+                                                class="anchor"> ¶</a></h2>
+
+    <p>
+        JSNAV использует URL следующего вида:
+    </p>
+  <pre class="wiki">http://user:pass@host:port/path/resource?query#anchor;navEventName;param1;param2;...
+  </pre>
+    <p>
+        Данный вид URL полностью совместим с <a class="ext-link" href="http://tools.ietf.org/html/rfc1630"><span
+            class="icon">RFC1630</span></a>.
+    </p>
+
+    <p>
+        Обратите внимание на синтаксис якоря страницы:
+        1. до служебного символа <tt>#</tt> URI страницы ничем не отличается, от указанного в стандарте, изменения
+        касаются лишь синтаксиса якоря
+        2. сразу же после <tt>#</tt> и до символа <tt>;</tt> идёт обычный HTML якорь со стандартным действием
+        (прокручивание страницы до элемента якоря)
+        3. после якоря идёт служебный символ <tt>;</tt> и указывается имя события
+        4. далее через символ <tt>;</tt> идёт список параметров, с которыми будут вызваны обработчики событий; параметры
+        закодированы в URL encoding в байтовой кодировке UTF-8
+    </p>
+
+    <p>
+        <br>
+    </p>
+
+    <h2 id="ДляуправлениясобытиямипредоставленоследующееAPI:">Для управления событиями предоставлено следующее API:<a
+            title="Link to this section"
+            href="#%D0%94%D0%BB%D1%8F%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D1%8F%D0%BC%D0%B8%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D1%83%D1%8E%D1%89%D0%B5%D0%B5API:"
+            class="anchor"> ¶</a></h2>
+    <ol>
+        <li>в библиотеке используется следующий вид объектов-репрезентаций событий Event:
+            <div class="code"><pre><span class="p">{</span>
+  <span class="nx">anchor</span><span class="o">:</span><span class="nx">anchorName</span><span class="p">,</span>
+  <span class="nx">event</span><span class="o">:</span><span class="nx">eventName</span><span class="p">,</span>
+  <span class="nx">params</span><span class="o">:</span><span class="p">[</span><span class="nx">array</span> <span
+                        class="nx">of</span> <span class="nx">unescaped</span> <span class="nx">params</span><span
+                        class="p">]</span>
+<span class="p">}</span></pre>
+            </div>
+            <ul>
+                <li><tt>anchor</tt> - <tt>undefined</tt> или имя якоря (от <tt>#</tt> до <tt>;</tt> или до конца строки,
+                    в случае отсутствия <tt>;</tt>)
+                </li>
+                <li><tt>event</tt> - <tt>undefined</tt> или декодированное из URL encoding (поддерживается только
+                    байтовая кодировка UTF-8) имя события
+                </li>
+                <li><tt>params</tt> - массив (всегда массив, не равен <tt>undefined</tt>) декодированных параметров для
+                    обработчиков URI
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <ol start="2">
+        <li><tt>JSNAV.bind(&lt;string&gt; navEventName, &lt;function(param1, param2, ...)&gt; handler)</tt>
+            <ul>
+                <li>метод регистрация обработчика события
+                </li>
+                <li>при вызове обработчика ему в качестве параметров передаются декодированные из URI значения <tt>param1,
+                    param2,...</tt>
+                </li>
+                <li>на одно событие можно добавить любое количество обработчиков; вызываться они будут последовательно,
+                    в порядке регистрации
+                </li>
+                <li><strong>Пример:</strong>
+
+                    <div class="code"><pre><span class="kd">var</span> <span class="nx">addClassHandler</span> <span
+                            class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">className</span><span
+                            class="p">,</span> <span class="nx">textId</span><span class="p">)</span> <span
+                            class="p">{</span>
+  <span class="kd">var</span> <span class="nx">elm</span> <span class="o">=</span> <span class="nx">textId</span><span
+                                class="o">?</span> <span class="nb">document</span><span class="p">.</span><span
+                                class="nx">getElementById</span><span class="p">(</span><span
+                                class="nx">textId</span><span class="p">)</span> <span class="o">:</span> <span
+                                class="k">this</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">className</span> <span
+                                class="o">&amp;&amp;</span> <span class="nx">elm</span><span class="p">.</span><span
+                                class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span
+                                class="p">(</span><span class="nx">className</span><span class="p">)</span> <span
+                                class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">elm</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span> <span
+                                class="s2">" "</span> <span class="o">+</span> <span class="nx">className</span><span
+                                class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">JSNAV</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span
+                                class="s2">"addClass"</span><span class="p">,</span> <span
+                                class="nx">addClassHandler</span><span class="p">);</span></pre>
+                    </div>
+                </li>
+                <li>Обработчик <tt>addClassHandler</tt> будет вызываться на URI вида:
+                    <ul>
+                        <li><tt>test.html#;addClass</tt>
+                            <ul>
+                                <li>вызов <tt>addClassHandler()</tt> в контексте <tt>window.document.body</tt>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><tt>test.html#;addClass;className</tt>
+                            <ul>
+                                <li>вызов <tt>addClassHandler('className')</tt> в контексте
+                                    <tt>window.document.body</tt>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><tt>test.html#;addClass;className;elementId</tt>
+                            <ul>
+                                <li>вызов <tt>addClassHandler('className', 'elementId')</tt> в контексте <tt>window.document.body</tt>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><tt>test.html#anchor;addClass;className</tt>
+                            <ul>
+                                <li>вызов <tt>addClassHandler('className')</tt> в контексте элемента якоря (элемента с
+                                    <tt>id=='anchor'</tt> или <tt>name=='anchor'</tt>) и прокрутка до элемента якоря
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <ol start="3">
+        <li><tt>JSNAV.unbind(&lt;string&gt; navEventName, &lt;function(param1, param2, ...)&gt; handler =
+            undefined)</tt>
+            <ul>
+                <li>метод убирает обработчики событий
+                </li>
+                <li><tt>JSNAV.unbind(navEventName)</tt>
+                    <ul>
+                        <li>будут убраны все обработчики для события с именем <tt>navEventName</tt>
+                        </li>
+                    </ul>
+                </li>
+                <li><tt>JSNAV.unbind(navEventName, handler)</tt>
+                    <ul>
+                        <li>будет убран обработчик только <tt>handler</tt> у события с именем <tt>navEventName</tt>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <ol start="4">
+        <li><tt>JSNAV.parseUri(&lt;string&gt; uri) : &lt;Event&gt;</tt>
+            <ul>
+                <li>метод разбирает строку URI и возвращает объект события в формате <tt>Event</tt>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <ol start="5">
+        <li><tt>JSNAV.fire(&lt;Event&gt; event)</tt>
+            <ul>
+                <li>метод обработки событий
+                </li>
+                <li>в случае нахождения в описании события <tt>event.anchor</tt> и нахождения элемента с <tt>id=='anchor'</tt>
+                    или <tt>name=='anchor'</tt> метод делает к этому элементу <tt>scrollTo</tt>
+                </li>
+                <li>в случае нахождения в описании события <tt>event.event</tt> метод вызывает обработчики для события с
+                    именем <tt>event.event</tt> и параметрами <tt>event.params</tt>
+                </li>
+                <li>обработчики события выполняются в контексте <tt>window.document.body</tt> или элемента якоря, если
+                    он найден
+                </li>
+                <li>обработчики выполняются последовательно, в порядке регистрации их для этого события методом
+                    <tt>bind</tt>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <ol start="6">
+        <li><tt>JSNAV.checkUri()</tt>
+            <ul>
+                <li>метод следит за текущим URI (<tt>window.location.href</tt>) и, в случае, если он изменился
+                    производит вызов <tt>JSNAV.fire</tt>
+                </li>
+                <li>в случае, если был произведён переход по ссылке с обычным якорем, корректирует текущий URI в формат
+                    JSNAV
+                </li>
+                <li>при корректировке URI в якорь дописывается нотация последнего вызванного события
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <p>
+        <br>
+    </p>
+
+    <h2 id="Исходники">Исходники<a title="Link to this section"
+                                   href="#%D0%98%D1%81%D1%85%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA%D0%B8" class="anchor"> ¶</a>
+    </h2>
+
+    <p>
+        Исходники доступны в <a class="ext-link"
+                                href="http://jsnavigator.git.sourceforge.net/git/gitweb-index.cgi"><span class="icon">GIT библиотеки</span></a>:
+    </p>
+  <pre class="wiki">git://jsnavigator.git.sourceforge.net/gitroot/jsnavigator/jsnavigator
+  </pre>
+    <p>
+        Релизы так же доступны в <a class="ext-link" href="https://sourceforge.net/projects/jsnavigator/files/"><span
+            class="icon">файлах проекта</span></a>.
+    </p>
+
+    <p>
+        <br>
+    </p>
+
+    <h2 id="Примеры">Примеры<a title="Link to this section" href="#%D0%9F%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B"
+                               class="anchor"> ¶</a></h2>
+
+    <p>
+        Примеры использования библиотеки находятся в исходниках проекта.
+        Кроме того, ещё примеры можно посмотреть <a class="ext-link"
+                                                    href="http://jsnavigator.sourceforge.net/sample.html"><span
+            class="icon">тут</span></a>.
+    </p>
+
+    <p>
+        <br>
+    </p>
+
+    <h2 id="ЗапросыновыхфункцийиОшибки">Запросы новых функций и Ошибки<a title="Link to this section"
+                                                                         href="#%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D1%8B%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B9%D0%B8%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8"
+                                                                         class="anchor"> ¶</a></h2>
+    <ul>
+        <li><a class="ext-link" href="https://sourceforge.net/apps/trac/jsnavigator/newticket"><span
+                class="icon">Здесь</span></a> можно рапортавать о багах и писать запросы новых функций.
+        </li>
+        <li><a class="ext-link" href="https://sourceforge.net/apps/trac/jsnavigator/report/1"><span class="icon">все активные задачи</span></a>
+        </li>
+    </ul>
+    <p>
+        <br>
+    </p>
+
+    <h2 id="Дополнительно">Дополнительно<a title="Link to this section"
+                                           href="#%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE"
+                                           class="anchor"> ¶</a></h2>
+
+    <p>
+        <a class="wiki" href="description-en.html">english version</a>
+    </p>
+</div>
+
+<p align="right"><sup>ЧЕРНОВИК; <a href="https://sourceforge.net/apps/trac/jsnavigator/wiki/WikiStartRu">актуальная версия</a></sup></p>
+
+</body>
+</html>

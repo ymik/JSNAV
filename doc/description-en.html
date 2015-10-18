@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JSNAV</title>
+    <link rel="stylesheet" href="static/wiki.css" type="text/css"/>
+    <link rel="stylesheet" href="static/code.css" type="text/css"/>
+</head>
+<body>
+
+<div class="wikipage searchable">
+  <h1 id="JSNAV:javascriptnavigationhelper">JSNAV: javascript navigation helper<a title="Link to this section" href="#JSNAV:javascriptnavigationhelper" class="anchor"> ¶</a></h1>
+  <p>
+  <br>
+  </p>
+  <h2 id="Whatproblemsithelpstosolve">What problems it helps to solve?<a title="Link to this section" href="#Whatproblemsithelpstosolve" class="anchor"> ¶</a></h2>
+  <p>
+  An example, a typical use case of navigation through javascript:
+  imagine a page with AJAX changable content:
+  </p>
+  <p>
+  <a style="border: none;" href="http://jqapi.com/" target="_blank"><img src="static/sample.png"
+                                                                                             alt="example of AJAX site"
+                                                                                             title="example of AJAX site"
+                                                                                             style="border: none;"></a>
+  </p>
+  <p>
+  Document's URI doesn't change when user click on menu item.
+  When user open document follow link from address bar, then page will show inital contents.
+  Some developers try to encode content's ID in URI's anchors to solve this problem.
+  They write IDs of content to anchors and try to restore document when link is opened in new page.
+  Unfortunately, this method makes impossible to use standard anchors for navigating in the page.
+  </p>
+  <p>
+  <strong>JSNAV</strong> - a library that allows to specify and save some javascript calls in the page's URI.
+  </p>
+  <p>
+  This library helps to standardize the coding javascript URI handler in the anchors.
+  Also it helps to keep the classic navigation anchors.
+  </p>
+  <p>
+  <br>
+  </p>
+  <h2 id="Howdoesitwork">How does it work?<a title="Link to this section" href="#Howdoesitwork" class="anchor"> ¶</a></h2>
+  <p>
+  <strong>JSNAV</strong> use <a class="wiki" href="pages/JsnavUri.html">own form of URI</a> with backward compatibility with <a class="ext-link" href="http://tools.ietf.org/html/rfc1630"><span class="icon">RFC1630</span></a>:
+  </p>
+  <pre class="wiki">http://user:pass@host:port/path/resource?query#anchor;navEventName;param1;param2;...
+  </pre><p>
+  It allows to link some <a class="wiki" href="pages/ObjectHandler.html">javascript handlers</a> with some <a class="wiki" href="pages/UriEvent.html">events</a> described in URI.
+  </p>
+  <p>
+  <br>
+  </p>
+  <h2 id="Objects:">Objects:<a title="Link to this section" href="#Objects:" class="anchor"> ¶</a></h2>
+  <ul><li>object <a class="wiki" href="pages/ObjectEvent.html">Event</a>
+  </li><li>object <a class="wiki" href="pages/ObjectHandler.html">Handler</a>
+  </li></ul><p>
+  <br>
+  </p>
+  <h2 id="API">API<a title="Link to this section" href="#API" class="anchor"> ¶</a></h2>
+  <p>
+  <strong>JSNAV</strong> provides next public API:
+  </p>
+  <ul><li><a class="wiki" href="pages/MethodBind.html">bind</a><tt>(&lt;string&gt; navEventName, &lt;</tt><a class="wiki" href="pages/ObjectHandler.html">Handler</a><tt>&gt; handler) : undefined </tt>
+  </li><li><a class="wiki" href="pages/MethodUnbind.html">unbind</a><tt>(&lt;string&gt; navEventName, &lt;</tt><a class="wiki" href="pages/ObjectHandler.html">Handler</a><tt>&gt; handler = undefined) : undefined </tt>
+  </li><li><a class="wiki" href="pages/MethodParseUri.html">parseUri</a><tt>(&lt;string&gt; uri): </tt><a class="wiki" href="pages/ObjectEvent.html">Event</a><tt> </tt>
+  </li><li><a class="wiki" href="pages/MethodFire.html">fire</a><tt>(&lt;</tt><a class="wiki" href="pages/ObjectEvent.html">Event</a><tt>&gt; event) : undefined </tt>
+  </li><li><a class="wiki" href="pages/MethodCheckUri.html">checkUri</a><tt>() : undefined </tt>
+  </li></ul><p>
+  <br>
+  </p>
+  <h2 id="Source">Source<a title="Link to this section" href="#Source" class="anchor"> ¶</a></h2>
+  <p>
+  All sources are available at <a class="ext-link" href="http://jsnavigator.git.sourceforge.net/git/gitweb-index.cgi"><span class="icon">project GIT</span></a>:
+  </p>
+  <pre class="wiki">git://jsnavigator.git.sourceforge.net/gitroot/jsnavigator/jsnavigator
+  </pre><p>
+  Also releases are available at <a class="ext-link" href="https://sourceforge.net/projects/jsnavigator/files/"><span class="icon">project files</span></a>.
+  </p>
+  <p>
+  <br>
+  </p>
+  <h2 id="Examples">Examples<a title="Link to this section" href="#Examples" class="anchor"> ¶</a></h2>
+  <p>
+  Examples of using the library are in the source package.
+  Also more examples can be found <a class="ext-link" href="http://jsnavigator.sourceforge.net/sample.html"><span class="icon">here</span></a>.
+  </p>
+  <p>
+  <br>
+  </p>
+  <h2 id="FeaturerequestsandBugs">Feature requests and Bugs<a title="Link to this section" href="#FeaturerequestsandBugs" class="anchor"> ¶</a></h2>
+  <ul><li><a class="ext-link" href="https://sourceforge.net/apps/trac/jsnavigator/newticket"><span class="icon">Here</span></a> you can write bug report or feature request.
+  </li><li><a class="ext-link" href="https://sourceforge.net/apps/trac/jsnavigator/report/1"><span class="icon">all active tasks</span></a>
+  </li></ul><p>
+  <br>
+  </p>
+  <h2 id="Other">Other<a title="Link to this section" href="#Other" class="anchor"> ¶</a></h2>
+  <p>
+  <a class="wiki" href="description-ru.html">русская версия</a>
+  </p>
+</div>
+
+<p align="right"><sup>DRAFT; <a href="http://sourceforge.net/apps/trac/jsnavigator/">current version</a></sup></p>
+
+</body>
+</html>

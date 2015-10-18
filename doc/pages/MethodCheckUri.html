@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Method checkUri</title>
+    <link rel="stylesheet" href="../static/wiki.css" type="text/css"/>
+    <link rel="stylesheet" href="../static/code.css" type="text/css"/>
+</head>
+<body>
+
+<div class="wikipage searchable">
+        
+          <h1 id="MethodcheckUri">Method checkUri<a title="Link to this section" href="#MethodcheckUri" class="anchor"> ¶</a></h1>
+<p>
+This method is observe document's URI <tt>window.location.href</tt>. 
+</p>
+<div class="code"><pre><span class="nx">JSNAV</span><span class="p">.</span><span class="nx">checkUri</span><span class="p">()</span> <span class="o">:</span> <span class="kc">undefined</span>
+</pre></div><p>
+<br>
+</p>
+<h2 id="Features:">Features:<a title="Link to this section" href="#Features:" class="anchor"> ¶</a></h2>
+<ul><li>if URI is changed then it makes call <a class="wiki" href="MethodFire.html">fire</a>
+</li><li>corrects document's URI to <a class="wiki" href="JsnavUri.html">JSNAV standart</a> if user use link with classical <a class="wiki" href="AnchorElement.html">anchor</a>
+</li><li>appends to anchor <a class="wiki" href="ObjectEvent.html">event</a><tt>.event</tt> and <a class="wiki" href="ObjectEvent.html">event</a><tt>.params</tt> from last event for the anchor correction
+</li><li>this method does called every 200 mills
+</li></ul><p>
+<br>
+</p>
+<h2 id="Seealso:">See also:<a title="Link to this section" href="#Seealso:" class="anchor"> ¶</a></h2>
+<ul><li>method <a class="missing wiki">parseUrl?</a>
+</li><li>method <a class="wiki" href="MethodBind.html">fire</a>
+</li><li><a class="wiki" href="JsnavUri.html">JSNAV URI</a>
+</li><li><a class="wiki" href="ObjectEvent.html">event object</a>
+</li><li><a class="wiki" href="UriEvent.html">URI event</a>
+</li><li><a class="wiki" href="AnchorElement.html">anchor element</a>
+</li></ul>
+        
+        
+      </div>
+
+<p align="right"><sup>DRAFT; <a href="http://sourceforge.net/apps/trac/jsnavigator/">current version</a></sup></p>
+
+</body>
+</html>

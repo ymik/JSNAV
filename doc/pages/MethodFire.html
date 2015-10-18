@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Method fire</title>
+    <link rel="stylesheet" href="../static/wiki.css" type="text/css"/>
+    <link rel="stylesheet" href="../static/code.css" type="text/css"/>
+</head>
+<body>
+
+<div class="wikipage searchable">
+        
+          <h1 id="Methodfire">Method fire<a title="Link to this section" href="#Methodfire" class="anchor"> ¶</a></h1>
+<p>
+This method gets <a class="wiki" href="ObjectEvent.html">event object</a> and does call <a class="wiki" href="UriEvent.html">URI event</a> handlers.
+</p>
+<div class="code"><pre><span class="nx">JSNAV</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Event</span><span class="o">&gt;</span> <span class="nx">event</span><span class="p">)</span> <span class="o">:</span> <span class="kc">undefined</span>
+</pre></div><p>
+<br>
+</p>
+<h2 id="Features:">Features:<a title="Link to this section" href="#Features:" class="anchor"> ¶</a></h2>
+<ul><li>call event handlers for <a class="wiki" href="ObjectEvent.html">event</a><tt>.event</tt>
+</li><li>if <a class="wiki" href="ObjectEvent.html">event</a><tt>.anchor</tt> is defined and <a class="wiki" href="AnchorElement.html">anchor element</a> is found then method makes <tt>scrollTo</tt> to <a class="wiki" href="AnchorElement.html">anchor element</a>
+</li><li>if <a class="wiki" href="ObjectEvent.html">event</a><tt>.event</tt> is defined then method calls all registered handlers for event named <a class="wiki" href="ObjectEvent.html">event</a><tt>.event</tt>
+</li><li><a class="wiki" href="ObjectHandler.html">handlers</a> are executed in context of <tt>window.document.body</tt> or <a class="wiki" href="AnchorElement.html">anchor element</a> if it is found
+</li><li><a class="wiki" href="ObjectHandler.html">handlers</a> are executed sequentially, in order of their registration for this event by <a class="wiki" href="MethodBind.html">bind</a>
+</li></ul><p>
+<br>
+</p>
+<h2 id="Seealso:">See also:<a title="Link to this section" href="#Seealso:" class="anchor"> ¶</a></h2>
+<ul><li>method <a class="wiki" href="MethodBind.html">bind</a>
+</li><li><a class="wiki" href="ObjectEvent.html">event object</a>
+</li><li><a class="wiki" href="ObjectHandler.html">event handlers</a>
+</li><li><a class="wiki" href="UriEvent.html">URI event</a>
+</li><li><a class="wiki" href="AnchorElement.html">anchor element</a>
+</li></ul>
+        
+        
+      </div>
+
+<p align="right"><sup>DRAFT; <a href="http://sourceforge.net/apps/trac/jsnavigator/">current version</a></sup></p>
+
+</body>
+</html>

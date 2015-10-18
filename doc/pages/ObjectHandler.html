@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Handler function </title>
+    <link rel="stylesheet" href="../static/wiki.css" type="text/css"/>
+    <link rel="stylesheet" href="../static/code.css" type="text/css"/>
+</head>
+<body>
+
+<div class="wikipage searchable">
+
+<h1 id="ObjectHandler">Handler function<a title="Link to this section" href="#ObjectHandler" class="anchor"> ¶</a></h1>
+          <p>
+Handler is javascript function with some string parameters.
+</p>
+<div class="code"><pre><span class="kd">function</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span> <span class="nx">param1</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span> <span class="nx">param2</span><span class="p">,</span> <span class="p">...){</span>
+   <span class="p">...</span>
+<span class="p">}</span>
+</pre></div><p>
+This function is calls by <strong>JSNAV</strong> in context of <a class="wiki" href="AnchorElement.html">AnchorElement</a> or <tt>window.document.body</tt>
+</p>
+<h2 id="Example:">Example:<a title="Link to this section" href="#Example:" class="anchor"> ¶</a></h2>
+<div class="code"><pre><span class="kd">var</span> <span class="nx">addClassHandler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">className</span><span class="p">,</span> <span class="nx">textId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">elm</span> <span class="o">=</span> <span class="nx">textId</span><span class="o">?</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">textId</span><span class="p">)</span> <span class="o">:</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">className</span> <span class="o">&amp;&amp;</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">className</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">className</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">elm</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span> <span class="s2">" "</span> <span class="o">+</span> <span class="nx">className</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">JSNAV</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s2">"addClass"</span><span class="p">,</span> <span class="nx">addClassHandler</span><span class="p">);</span>
+</pre></div><p>
+<br>
+</p>
+<h2 id="Seealso:">See also:<a title="Link to this section" href="#Seealso:" class="anchor"> ¶</a></h2>
+<ul><li>method <a class="wiki" href="MethodBind.html">bind</a>
+</li><li>method <a class="wiki" href="MethodUnbind.html">unbind</a>
+</li></ul>
+
+
+</div>
+
+<p align="right"><sup>DRAFT; <a href="http://sourceforge.net/apps/trac/jsnavigator/">current version</a></sup></p>
+
+</body>
+</html>
